@@ -1,0 +1,22 @@
+.new-info-container {
+  width: 80%; 
+  margin: 0 auto; 
+  display: flex;
+  justify-content: center; 
+  flex-wrap: wrap; 
+  gap: 24px;
+  padding: 24px 0; 
+  background-color: #f9fafb;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e5e7eb;
+}
+
+h2 {
+  font-size: 28px; 
+  font-weight: 700; 
+  color: #333333; 
+  text-align: center; 
+  margin: 0 0 20px 0; 
+  width: 100%; 
+}

@@ -1,0 +1,44 @@
+.footer {
+  margin-top: 30px;
+  padding: 24px 16px;
+  background-color: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+  font-family: sans-serif;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.social-icons img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.social-icons img:hover {
+  opacity: 0.7;
+}
+
+.legal-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.legal-links a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s;
+}
+
+.legal-links a:hover {
+  color: #3f8efc;
+}

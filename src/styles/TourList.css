@@ -1,0 +1,153 @@
+.tour-layout {
+  display: flex;
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.tour-filters {
+  flex: 0 0 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: #f9fafb;
+  padding: 20px;
+  border-radius: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.tour-filters input,
+.tour-filters button {
+  padding: 10px 12px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.tour-filters button {
+  background-color: #007aff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.tour-filters button:hover {
+  background-color: #005fcc;
+}
+
+.tour-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.tour-card {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.tour-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tour-hotel-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.tour-location {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.tour-card-body {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.tour-thumbnail.large {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  flex-shrink: 0;
+}
+
+.tour-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+
+.tour-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 6px 16px;
+  font-size: 14px;
+  color: #333;
+}
+
+.tour-description {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.5;
+}
+
+.read-more {
+  color: #007aff;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.tour-price {
+  bottom: 0;
+  right: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: blue; /* зелёный */
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding-top: 16px;
+}
+
+.pagination button {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #007aff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: default;
+}
