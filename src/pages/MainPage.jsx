@@ -7,6 +7,7 @@ import { dataStorage, navStorage, tempIdStorage, filterStorage } from "../store"
 import { useEffect, useState } from "react";
 import TourList from "../components/TourList";
 import TourBlock from "../components/TourBlock";
+import ContactForm from "../components/ContactForm";
 
 export default function MainPage(){
     const { setArray } = dataStorage()
@@ -40,6 +41,7 @@ export default function MainPage(){
                 <>
                     <NewInfo type={"tours"}></NewInfo>
                     <NewInfo type={"news"}></NewInfo>
+                    <ContactForm></ContactForm>
                 </>}
                 {navState === "news" &&
                     <NewsList></NewsList>

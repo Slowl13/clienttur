@@ -4,7 +4,7 @@ import "../styles/Form.css"
 import "../styles/PanelMain.css"
 
 export default function PanelMain() {
-    const { usersArray, newsArray, tursArray, setArray } = dataStorage();
+    const { usersArray, newsArray, tursArray, clientsArray, setArray } = dataStorage();
     const { navState } = navStorage();
     const { token, userId } = userInfo()
 
@@ -38,9 +38,21 @@ export default function PanelMain() {
             setArray("newsArray", data)
         }
 
+        async function getClientsData() {
+            const res = await fetch("http://localhost:3000/api/admin/clients/get",
+                {
+                    method: "POST",
+                    headers: {'Content-Type' : 'application/json'},
+                    body: JSON.stringify({adminToken: token})
+                })
+            const data = await res.json()
+            setArray("clientsArray", data)
+        }
+
         getAdminData()
         getTursData()
         getNewsData()
+        getClientsData()
     }, [posted])
 
     const [turFormData, setTurFormData] = useState({
@@ -237,10 +249,10 @@ export default function PanelMain() {
         })
 
         console.log('Успешно отправлено:', response.data);
-            alert('Тур успешно добавлен!');
+            alert('Тур успешно изменен!');
         } catch (error) {
         console.error('Ошибка при отправке:', error);
-            alert('Ошибка при добавлении тура.');
+            alert('Ошибка при изменении тура.');
         }
     }
 
@@ -280,6 +292,9 @@ export default function PanelMain() {
 
     const handleSubmitEditUser = async (e) => {
         e.preventDefault();
+
+        const confirmChange = window.confirm("Вы уверены, что хотите изменить данные пользователя?");
+        if (!confirmChange) return;
 
         try {
             const response = await fetch('http://localhost:3000/api/admin/users/edit', {
@@ -408,10 +423,64 @@ export default function PanelMain() {
         });
     }
 
+    const changeStatus = async (id, newStatus) => {
+        const confirmChange = window.confirm("Вы уверены, что хотите изменить статус заявки?");
+        if (!confirmChange) return;
+
+        try {
+            const response = await fetch("http://localhost:3000/api/admin/clients/status", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    adminToken: token,
+                    id: id,
+                    status: newStatus,
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error("Ошибка при изменении статуса");
+            }
+
+            setPosted(!posted);
+        } catch (error) {
+            console.error("Ошибка:", error);
+        }
+    }
+
+    const handleDeleteSpam = async () => {
+        const confirmChange = window.confirm("Вы уверены, что хотите очистить заявки от спама?");
+        if (!confirmChange) return;
+
+        try {
+            const response = await fetch("http://localhost:3000/api/admin/clients/spam", {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    adminToken: token,
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error("Ошибка при удалении");
+            }
+
+            setPosted(!posted);
+
+        } catch (error) {
+            console.error("Ошибка:", error);
+        }
+    }
+
     return (
         <div>
             <div className="control-buttons">
-                <button onClick={()=>setAdd(!add)}>{add ? "Скрыть форму": "Показать форму"}</button>
+                {navState !== "clients" && <button onClick={()=>setAdd(!add)}>{add ? "Скрыть форму": "Показать форму"}</button>}
+                {navState === "clients" && <button onClick={handleDeleteSpam}>Удалить спам</button>}
                 <button onClick={()=>setIsHidden(!isHidden)}>{isHidden ? "Скрыть данные": "Показать данные"}</button>
             </div>
 
@@ -635,6 +704,40 @@ export default function PanelMain() {
                                 <button className="td_button" onClick={() => handleDeleteUser(user.idUser)}>Удалить</button>
                             </div>
                         </td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </>
+                )}
+
+                {isHidden && navState === "clients" && (
+                <>
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>ФИО</th>
+                        <th>Номер</th>
+                        <th>Почта</th>
+                        <th>Статус</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {clientsArray.sort((a, b) => {
+        const order = { new: 0, closed: 1, spam: 2 };
+        return order[a.status] - order[b.status];
+    }).map((elem, index) => (
+                        <tr key={index}>
+                            <td>{elem.idClient}</td>
+                            <td>{elem.name}</td>
+                            <td>{elem.phone}</td>
+                            <td>{elem.email}</td>
+                            <td>
+                                <select className="input-status" value={elem.status} onChange={(e) => changeStatus(elem.idClient, e.target.value)}>
+                                    <option value="new">Новая заявка</option>
+                                    <option value="closed">Закрытая заявка</option>
+                                    <option value="spam">Спам</option>
+                                </select>
+                            </td>
                         </tr>
                     ))}
                     </tbody>

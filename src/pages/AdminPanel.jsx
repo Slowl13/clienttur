@@ -32,9 +32,21 @@ export default function AdminPanel(){
             setArray("newsArray", data)
         }
 
-        isLoggin && getAdminData()
-        isLoggin && getTursData()
-        isLoggin && getNewsData()
+        async function getClientsData() {
+            const res = await fetch("http://localhost:3000/api/admin/clients/get",
+                {
+                    method: "POST",
+                    headers: {'Content-Type' : 'application/json'},
+                    body: JSON.stringify({adminToken: token})
+                })
+            const data = await res.json()
+            setArray("clientsArray", data)
+        }
+
+        isLoggin && getAdminData();
+        isLoggin && getTursData();
+        isLoggin && getNewsData();
+        isLoggin && getClientsData();
     }, [isLoggin])
 
     return(

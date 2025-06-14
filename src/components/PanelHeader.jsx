@@ -10,12 +10,13 @@ export default function PanelHeader({ type }){
         <header style={{display:"flex", padding:"20px", gap:"30px", flexDirection:"column", alignItems:"flex-end"}}>
             <button onClick={setIsLoggin}>Выйти</button>
             <nav style={{
-                width: "100%",
+                width: "80%",
                 display: "flex",
                 justifyContent: "space-around",
                 alignItems: "center",
                 border: "1px solid black",
-                padding: "10px 40px"
+                padding: "10px 40px",
+                margin: "0 auto"
             }}>
                 <div style={{ flex: 1, textAlign: "center" }}>
                     <a onClick={() => setNavState("main")}>Туры</a>
@@ -25,7 +26,10 @@ export default function PanelHeader({ type }){
                 </div>
                 <div style={{ flex: 1, textAlign: "center" }}>
                     <a onClick={() => setNavState("users")}>Пользователи</a>  
-                </div>  
+                </div>
+                <div style={{ flex: 1, textAlign: "center" }}>
+                    <a onClick={() => setNavState("clients")}>Заявки</a>
+                </div>
             </nav>
         </header>
     )

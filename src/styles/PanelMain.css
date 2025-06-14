@@ -22,8 +22,6 @@
   background-color: #346fca;
 }
 
-/* Таблица */
-
 table {
   font-size: 16px;
   text-align: center;
@@ -61,6 +59,9 @@ tbody tr:last-child td {
   cursor: pointer;
   font-weight: 500;
   transition: color 0.2s ease;
+  background-color: #ffffff;
+  border: none;
+  font-size: 20px;
 }
 
 .td_button:hover {
@@ -70,4 +71,21 @@ tbody tr:last-child td {
 table img {
   max-width: 120px;
   border-radius: 8px;
+}
+
+.input-status {
+    font-size: 20px;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    color: #333;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-status:focus {
+    border-color: #888;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    outline: none;
 }

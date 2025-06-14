@@ -15,6 +15,7 @@ export const dataStorage = create((set) => ({
     usersArray: [],
     newsArray: [],
     tursArray: [],
+    clientsArray: [],
     setArray: (arrName, arrData) => set((state) => ({...state, [arrName]: arrData})),
     addNewData: (arrName, obj) => set((state) => ({...state, [arrName]: [...[arrName], obj]})) 
 }))

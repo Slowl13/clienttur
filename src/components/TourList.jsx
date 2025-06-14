@@ -18,7 +18,7 @@ export default function TourList({ country, city, date, nights, ppl }) {
   });
   const [page, setPage] = useState(1);
   const [filteredTurs, setFilteredTurs] = useState(tursArray);
-  const itemsPerPage = 10;
+  const itemsPerPage = 5;
 
   const applyFilters = () => {
     const filtered = tursArray.filter((tour) => {
@@ -117,6 +117,7 @@ export default function TourList({ country, city, date, nights, ppl }) {
       </div>
 
       <div className="tour-list">
+        {pagedTurs.length === 0 && <div className="tour-card" style={{width:"100%", textAlign:"center"}}>Туры не найдены!</div>}
         {pagedTurs.map((elem) => (
           <div className="tour-card" key={elem.idTour} onClick={() => {setNavState("tourblock"); setTempId(elem.idTour)}} >
             <div className="tour-card-header">
