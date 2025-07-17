@@ -3,7 +3,7 @@ import "../styles/Card.css"
 export default function TourCard({ imageSrc, title, date, hotelName, price, cityName, type, event }){
   return (
     <div className="card">
-      <img src={`http://localhost:3000${imageSrc}`} className="card-image" />
+      <img src={`http://localhost:3000${imageSrc}`} className="card-image" onClick={event} />
       {
         type === "tours" &&
         <div className="card-content" onClick={event}>

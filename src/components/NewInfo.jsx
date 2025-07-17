@@ -20,6 +20,7 @@ export default function NewInfo({ type }){
                 { if (key < 3) return <TourCard type={type} imageSrc={elem.image_path} title={elem.title} date={elem.published_at} event={() => {setNavState("newsblock"); setTempId(elem.idNews)}}></TourCard>})
             }
         </div>
+        <button className="btn" style={{margin:"0 auto"}} onClick={type === "tours" ? ()=>{setNavState("catalog"); window.scrollTo(0, 0);} : ()=>{setNavState("news"); window.scrollTo(0, 0);}}>{type === "tours" ? "Все туры" : "Все новости"}</button>
         </>
     )
 }
